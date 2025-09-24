@@ -36,21 +36,29 @@ def create_files(n: int) :
 #     e /= len(list)
 #     return e**0.5
 
-def medians_sd_from_files(i):
-    fp = open(get_path(i), 'r')
+def fill_from_file(fp,cats):
     list = fp.readlines()
-    cats = {'A':[],'B':[],'C':[],'D':[]}
-    res = {'A':0,'B':0,'C':0,'D':0}
     for i in list:
         cat,fr = i.split(' ')
         ff = float(fr)
         cats.get(cat).append(ff)
+
+def medians_sd_from_files(i):
+    path = get_path(i)
+    res = {'A':0,'B':0,'C':0,'D':0}
+    fp = open(path, 'r')
+    cats = {'A':[],'B':[],'C':[],'D':[]}
+    fill_from_file(fp,cats)
+    print(path)
     for key, value in cats.items():
         med = median(value)
         res[key] = med
-        print(f'{key} {med} {stdev(value)}')
+        if (len(value) == 1):
+            print(f'{key} med: {med} stdev: 0')
+        else:
+            print(f'{key} med: {med} stdev: {stdev(value)}')
     fp.close
-    print()
+    print
     return res
 
 n = 5
@@ -64,12 +72,10 @@ if __name__ == '__main__':
             for res in results:
                 for key, value in res.items():
                     x2msb[key].append(value)
-        
+            print("all median and standart deviation:")
             for key, value in x2msb.items():
                 if value:
-                    sd = stdev(value)
-                    med = median(value)
-                    print(f'{key} {med} {sd}')
+                    print(f'{key} med: {median(value)} stdev: {stdev(value)}')
                 else:
                     print(f'{key} нет данных')
                     
