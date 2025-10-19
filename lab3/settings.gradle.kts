@@ -1,4 +1,4 @@
-rootProject.name = "labServer"
+rootProject.name = "labKtor"
 
 dependencyResolutionManagement {
     repositories {

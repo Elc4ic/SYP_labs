@@ -1,4 +1,4 @@
-# labServer
+# labKtor
 
 This project was created using the [Ktor Project Generator](https://start.ktor.io).
 
@@ -18,7 +18,6 @@ Here's a list of features included in this project:
 | [kotlinx.serialization](https://start.ktor.io/p/kotlinx-serialization) | Handles JSON serialization using kotlinx.serialization library                     |
 | [Content Negotiation](https://start.ktor.io/p/content-negotiation)     | Provides automatic content conversion according to Content-Type and Accept headers |
 | [Postgres](https://start.ktor.io/p/postgres)                           | Adds Postgres database to your application                                         |
-| [Resources](https://start.ktor.io/p/resources)                         | Provides type-safe routing                                                         |
 
 ## Building & Running
 

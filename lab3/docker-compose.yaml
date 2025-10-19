@@ -1,0 +1,58 @@
+services:
+  lab3:
+    container_name: lab3
+    image: lab3:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+#    depends_on:
+#      - db
+#      - pgadmin
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=lab3db
+      - DB_USER=boarduser
+      - DB_PASSWORD=boardpass
+    volumes:
+      - lab-data:/var/lib/test/data
+    networks: [ microservices ]
+
+# я подключаюсь к контейнеру postgres из другого кластера, но пусть валяется
+#  db:
+#    container_name: db
+#    image: postgres:latest
+#    restart: always
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      POSTGRES_DB: lab3db
+#      POSTGRES_USER: boardbuser
+#      POSTGRES_PASSWORD: boardpass
+#    volumes:
+#      - db-data:/var/lib/postgresql/data
+#    networks: [ microservices ]
+#
+#  pgadmin:
+#    container_name: pgadmin4
+#    image: dpage/pgadmin4:7
+#    restart: always
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+#      PGADMIN_DEFAULT_PASSWORD: root
+#    ports:
+#      - "5050:80"
+#    volumes:
+#      - pgadmin-data:/var/lib/pgadmin
+#    networks: [ microservices ]
+
+volumes:
+  lab-data:
+#  db-data:
+#  pgadmin-data:
+
+networks:
+  microservices:
+    driver: bridge
