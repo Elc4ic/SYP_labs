@@ -10,19 +10,19 @@ fun createDbPool(): ConnectionPool {
     val connectionFactory =
         PostgresqlConnectionFactory(
             PostgresqlConnectionConfiguration.builder()
-                .host(Config.Db.host)
-                .port(Config.Db.port)
-                .database(Config.Db.database)
-                .username(Config.Db.user)
-                .password(Config.Db.password)
+                .host(Envy.Db.host)
+                .port(Envy.Db.port)
+                .database(Envy.Db.database)
+                .username(Envy.Db.user)
+                .password(Envy.Db.password)
                 .build()
         )
 
     val poolConfig = ConnectionPoolConfiguration.builder()
         .connectionFactory(connectionFactory)
         .maxIdleTime(Duration.ofMinutes(30))
-        .maxSize(Config.DbPool.maxSize)
-        .initialSize(Config.DbPool.initialSize)
+        .maxSize(Envy.DbPool.maxSize)
+        .initialSize(Envy.DbPool.initialSize)
         .build()
 
     return ConnectionPool(poolConfig)

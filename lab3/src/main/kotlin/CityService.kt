@@ -1,28 +1,19 @@
 package com.example
 
-//import kotlinx.coroutines.reactor.awaitSingle
 import io.r2dbc.pool.ConnectionPool
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.reactive.awaitLast
 import kotlinx.coroutines.reactive.awaitSingle
 import kotlinx.coroutines.reactive.collect
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class City(
-    val id: Long? = null,
-    val name: String,
-    val population: Long? = 0
-)
 
 class CityService(private val connectionPool: ConnectionPool) {
 
     companion object {
-        val INIT_DB = """
+        val INIT_DB_IF_NOT_EXISTS = """
                 CREATE TABLE IF NOT EXISTS cities (
                     id BIGSERIAL PRIMARY KEY,
                     name VARCHAR(100) NOT NULL,
-                    population INTEGER UNIQUE NOT NULL
+                    population INTEGER NOT NULL
                 );
                 ALTER SEQUENCE cities_id_seq RESTART WITH 1;
             """.trimIndent()
@@ -36,7 +27,7 @@ class CityService(private val connectionPool: ConnectionPool) {
     }
 
     suspend fun createTable() = withConnection { connection ->
-        connection.createStatement(INIT_DB)
+        connection.createStatement(INIT_DB_IF_NOT_EXISTS)
             .execute()
             .awaitLast()
     }
