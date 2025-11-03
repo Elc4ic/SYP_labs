@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>JSON Uploader — простой интерфейс</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Простой JSON Uploader</h1>
+</header>
+
+<section class="card">
+    <div class="row">
+        <div style="flex:1">
+            <label class="muted">Выберите файл .json или вставьте JSON в поле ниже</label>
+            <div id="dropzone" class="drop" tabindex="0">Перетащите файл сюда или нажмите чтобы выбрать</div>
+            <input id="fileInput" type="file" accept="application/json" style="display:none"/>
+        </div>
+    </div>
+
+    <div style="margin-top:12px">
+        <label class="muted">Или вставьте JSON:</label>
+        <textarea id="jsonText" placeholder='{"table":"users","columns":[...],"rows":[...]}'></textarea>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 240px;gap:12px;margin-top:12px;align-items:start">
+
+        <div>
+            <label class="muted">Настройки</label>
+            <div style="display:flex;gap:8px;margin-top:6px">
+                <button id="validateBtn">Валидировать</button>
+                <button id="sendBtn">Отправить</button>
+            </div>
+            <div style="margin-top:8px">
+                <label class="muted">Endpoint:</label>
+                <input id="endpoint" type="text" value="/import"/>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top:12px">
+        <div class="muted">Предпросмотр и ошибки</div>
+        <div id="preview" class="preview"></div>
+        <div id="errors" class="error"></div>
+    </div>
+
+</section>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
-rootProject.name = "labKtor"
-
-dependencyResolutionManagement {
+pluginManagement {
     repositories {
-        mavenCentral()
+        maven { url = uri("https://repo.spring.io/snapshot") }
+        gradlePluginPortal()
     }
 }
+rootProject.name = "lab3"

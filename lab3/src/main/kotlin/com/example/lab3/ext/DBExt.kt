@@ -1,6 +1,9 @@
-package com.example
+package com.example.lab3.ext
 
-fun io.r2dbc.spi.Row.getLongSafe(column: String): Long? {
+import io.r2dbc.spi.Row
+
+
+fun Row.getLongSafe(column: String): Long? {
     return try {
         when {
             this.get(column) == null -> null
@@ -12,10 +15,11 @@ fun io.r2dbc.spi.Row.getLongSafe(column: String): Long? {
     }
 }
 
-fun io.r2dbc.spi.Row.getStringSafe(column: String): String {
+fun Row.getStringSafe(column: String): String {
     return try {
         this.get(column, String::class.java) ?: ""
     } catch (e: Exception) {
         ""
     }
 }
+

@@ -1,0 +1,12 @@
+{
+  "table": "users",
+  "columns": [
+    {"name": "id", "type": "int"},
+    {"name": "email", "type": "varchar"},
+    {"name": "age", "type": "int"}
+  ],
+  "rows": [
+    {"id": 1, "email": "a@a", "age": 20},
+    {"id": 2, "email": "b@b", "age": 30}
+  ]
+}
