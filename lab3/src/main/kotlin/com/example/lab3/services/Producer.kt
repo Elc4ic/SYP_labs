@@ -17,6 +17,7 @@ class Producer {
         "bootstrap.servers" to "kafka:9092"
     )
     private val producer = KafkaProducer<String, JsonDB>(prop as Map<String, Any>?)
+
     fun send(payload: JsonDB): Mono<Void?> {
         val record: ProducerRecord<String, JsonDB> = ProducerRecord("test-topic", payload)
         return Mono.from<RecordMetadata> { producer.send(record) }.then()

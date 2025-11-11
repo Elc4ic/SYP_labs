@@ -1,7 +1,5 @@
 package com.example.lab3.entities
 
-import java.util.stream.Collectors
-
 
 data class JsonDB(
     val table: String?,
