@@ -14,20 +14,29 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build containers
-        run: docker-compose -H "ssh://root@151.242.43.166" build
+        run: |
+          cd lab4r
+          docker-compose -H "ssh://root@151.242.43.166" build
 
       - name: Start containers
-        run: docker-compose -H "ssh://root@151.242.43.166" up -d
+        run: |
+          cd lab4r
+          docker-compose -H "ssh://root@151.242.43.166" up -d
 
       - name: Wait for services to be ready
         run: |
+          cd lab4r
           sleep 10
           docker-compose -H "ssh://root@151.242.43.166" ps
 
       - name: Show logs on failure
         if: failure()
-        run: docker-compose -H "ssh://root@151.242.43.166" logs
+        run: |
+          cd lab4r
+          docker-compose -H "ssh://root@151.242.43.166" logs
 
       - name: Stop containers
         if: always()
-        run: docker-compose -H "ssh://root@151.242.43.166" down
+        run: |
+          cd lab4r
+          docker-compose -H "ssh://root@151.242.43.166" down
