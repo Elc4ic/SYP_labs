@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Go to lab repository
+        run: cd lab4r
+
       - name: Build containers
         run: |
           cd lab4r
