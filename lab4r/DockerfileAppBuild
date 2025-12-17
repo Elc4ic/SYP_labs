@@ -1,0 +1,7 @@
+FROM scala-sbt:0.13
+RUN mkdir - p /usr/src/app
+WORKDIR /usr/src/app
+COPY. /usr/src/app
+RUN sbt compile
+EXPOSE 8081
+CMD["sbt", "run"]
