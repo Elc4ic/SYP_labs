@@ -16,27 +16,27 @@ jobs:
       - name: Build containers
         run: |
           cd lab4r
-          docker-compose -H "ssh://root@151.242.43.166" build
+          docker compose -H "ssh://root@151.242.43.166" build
 
       - name: Start containers
         run: |
           cd lab4r
-          docker-compose -H "ssh://root@151.242.43.166" up -d
+          docker compose -H "ssh://root@151.242.43.166" up -d
 
       - name: Wait for services to be ready
         run: |
           cd lab4r
           sleep 10
-          docker-compose -H "ssh://root@151.242.43.166" ps
+          docker compose -H "ssh://root@151.242.43.166" ps
 
       - name: Show logs on failure
         if: failure()
         run: |
           cd lab4r
-          docker-compose -H "ssh://root@151.242.43.166" logs
+          docker compose -H "ssh://root@151.242.43.166" logs
 
       - name: Stop containers
         if: always()
         run: |
           cd lab4r
-          docker-compose -H "ssh://root@151.242.43.166" down
+          docker compose -H "ssh://root@151.242.43.166" down
